@@ -7,7 +7,6 @@
     mode: 420
     url: "{{ pulledpork_url }}"
   name: "Download Pulled Pork"
-  when: rock_online_install
 
 - name: "Install Pulled Pork"
   unarchive:
