@@ -1,0 +1,4 @@
+---
+
+rocknsm_baseurl: https://packagecloud.io/rocknsm/2/el/7/$basearch
+rocknsm_gpgurl: https://packagecloud.io/rocknsm/2/gpgkey

@@ -55,6 +55,7 @@ services:
     suricata:
       from: "rocknsm/base:latest"
       roles:
+        - rock-repo
         - suricata
 #registries:
   # Add optional registries used for deployment. For example:
