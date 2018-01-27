@@ -1,0 +1,6 @@
+[template]
+src   = "logrotate-suricata.conf.tmpl"
+dest  = "/etc/logrotate.d/suricata.conf"
+owner = "root"
+group = "root"
+mode  = "0644"

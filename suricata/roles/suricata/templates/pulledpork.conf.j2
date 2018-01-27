@@ -113,7 +113,7 @@ sid_changelog=/var/log/sid_changes.log
 #sorule_path=''
 
 # Path to the snort binary, we need this to generate the stub files
-snort_path={{ "/sbin/suricata" if included_components.suricata.enabled else "/usr/sbin/snort" }}
+snort_path="/sbin/suricata"
 
 # We need to know where your snort.conf file lives so that we can
 # generate the stub files

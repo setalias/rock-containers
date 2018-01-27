@@ -8,13 +8,21 @@
     name: suricata
     state: installed
 
-- name: Install Suricata configuration
-  template:
-    src: "suricata.yaml.j2"
-    dest: "/etc/suricata/suricata.yaml"
-    mode: 0644
-    owner: root
-    group: root
+- name: Create the confd directory
+  file:
+    path: "{{ confd_directory }}"
+    mode: 0755
+    owner: "{{ suricata_user }}"
+    group: "{{ suricata_group }}"
+    state: directory
+
+- name: Create the confd templates directory
+  file:
+    path: "{{ confd_templates }}"
+    mode: 0755
+    owner: "{{ suricata_user }}"
+    group: "{{ suricata_group }}"
+    state: directory
 
 - name: Create Suricata directories
   file:
@@ -33,6 +41,38 @@
     owner: "{{ suricata_user }}"
     group: "{{ suricata_group }}"
     state: directory
+
+- name: Copy Suricata configuration toml file
+  copy:
+    src: "suricata.yaml.toml"
+    dest: "{{ confd_directory }}/suricata.yaml.toml"
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Copy Suricata configuration template file
+  copy:
+    src: "suricata.yaml.tmpl"
+    dest: "{{ confd_templates }}/suricata.yaml.tmpl"
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Copy Suricata logrotate toml file
+  copy:
+    src: "logrotate-suricata.conf.toml"
+    dest: "{{ confd_directory }}/logrotate-suricata.conf.toml"
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Copy Suricata logrotate template file
+  copy:
+    src: "logrotate-suricata.conf.tmpl"
+    dest: "{{ confd_templates }}/logrotate-suricata.conf.tmpl"
+    mode: 0644
+    owner: root
+    group: root
 
 - name: Set suricata capabilities
   capabilities:
@@ -57,14 +97,6 @@
     owner: root
     group: root
 
-- name: 'Link suricata service files'
-  file:
-    src: "/etc/systemd/system/suricata.service"
-    dest: "/etc/systemd/system/rock.target.wants/suricata.service"
-    owner: root
-    group: root
-    state: link
-
 - name: Create IP reputation config dir
   file:
     path: /etc/suricata/rules/iplists
@@ -86,11 +118,3 @@
     enabled: yes
     state: started
     daemon_reload: yes
-
-- name: Configure logrotate for suricata logs
-  template:
-    src: templates/logrotate-suricata.conf.j2
-    dest: /etc/logrotate.d/suricata.conf
-    mode: 0644
-    owner: root
-    group: root

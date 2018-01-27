@@ -1,6 +1,6 @@
 /data/suricata/*.log /data/suricata/*.json
 {
-    rotate {{ getv "/suricata/retention" "3"}}
+    rotate {{getv "/suricata/retention" "3"}}
     missingok
     nocompress
     create 0644 suricata suricata
