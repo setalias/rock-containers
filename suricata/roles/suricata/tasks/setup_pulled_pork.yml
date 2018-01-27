@@ -2,13 +2,6 @@
   ################# Setup PulledPork  ##################
   ######################################################
 
-- name: Download pulled pork
-  get_url:
-    dest: "{{ rock_cache_dir }}/{{ pulledpork_filename }}"
-    mode: 420
-    url: "{{ pulledpork_url }}"
-  name: "Download Pulled Pork"
-
 - name: Create the cache dir
   file:
     path: "{{ rock_cache_dir }}"
@@ -16,6 +9,13 @@
     owner: root
     group: root
     state: directory
+    
+- name: Download pulled pork
+  get_url:
+    dest: "{{ rock_cache_dir }}/{{ pulledpork_filename }}"
+    mode: 420
+    url: "{{ pulledpork_url }}"
+  name: "Download Pulled Pork"
 
 - name: "Install Pulled Pork"
   unarchive:
