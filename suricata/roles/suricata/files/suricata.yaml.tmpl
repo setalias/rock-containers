@@ -12,7 +12,7 @@
 vars:
   # more specifc is better for alert accuracy and performance
   address-groups:
-    HOME_NET: {{getv "_suricata_home_net"}}
+    HOME_NET: {{getv "/suricata/home/net"}}
 
     EXTERNAL_NET: "!$HOME_NET"
 
