@@ -29,3 +29,5 @@ suricata_group: suricata
 
 confd_directory: "/etc/confd/conf.d/"
 confd_templates: "/etc/confd/templates/"
+
+rock_cache_dir: /srv/rocknsm/support
