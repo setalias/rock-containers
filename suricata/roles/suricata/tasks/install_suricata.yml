@@ -111,8 +111,3 @@
     owner: suricata
     group: suricata
     mode: 755
-
-- name: Enable and start suricata
-  systemd:
-    name: suricata
-    enabled: yes
