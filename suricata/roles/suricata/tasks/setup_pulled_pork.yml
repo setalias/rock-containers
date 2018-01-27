@@ -50,12 +50,12 @@
 
 - name: Check stats of rules files
   stat:
-    path: "{{ pulledpork_engine_basepath }}/rules/pulledpork.rules"
+    path: "/etc/suricata/rules/pulledpork.rules"
   register: rules_file
 
 - name: Create initial pulledpork rules-related files
   file:
-    path: "{{ pulledpork_engine_basepath }}/rules/pulledpork.rules"
+    path: "/etc/suricata/rules/pulledpork.rules"
     owner: root
     group: root
     mode: 0644
@@ -73,5 +73,4 @@
     job: /opt/pulledpork/pulledpork.pl
       -c /etc/pulledpork/pulledpork.conf
       -l > /var/log/pulledpork.log 2>&1;
-      {{ "/usr/bin/systemctl kill -s USR2 suricata;" if included_components.suricata.enabled else None }}
-      {{ "/usr/bin/systemctl restart snortd;" if included_components.snort.enabled else None }}
+      "/usr/bin/systemctl kill -s USR2 suricata;"

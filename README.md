@@ -1,6 +1,25 @@
 # rock-containers
 Repo to store container sources
 
+## Installing ansible-container
+
+Perform the following tasks:
+1. `yum install epel-release`
+2. `yum update -y`
+3. `yum install -y python-pip`
+4. `pip install --upgrade pip`
+5. `pip install --upgrade setuptools`
+6. `pip install ansible-container[docker,k8s]`
+
+You will now need to update your engine.py file. See the bug here:
+
+https://github.com/ansible/ansible-container/issues/762
+
+To update engine.py do the following:
+1. `vim /usr/lib/python2.7/site-packages/container/docker/engine.py`
+2. Go to line 210 and change the word "run" in os.path.join(os.sep, 'run', 'secrets') to docker
+3. Save the file
+
 ## Structure
 This repo contains a structure allowing for tailoring applications
 agnostic to the container management backend. The idea is that we
@@ -19,7 +38,7 @@ example/
     whatever-goes-here.json
 ```
 
-This sort of mirrors the structure used by Project Atomic's 
+This sort of mirrors the structure used by Project Atomic's
 [nulecule library](https://github.com/projectatomic/nulecule-library).
 
 ## Containers
@@ -53,5 +72,3 @@ Lastly, I don't claim to be the end-all-be-all expert on these things. I accept
 (and enjoy) a good argument. I have strong opinions, but happy to listen.
 
 Thanks!
-
-

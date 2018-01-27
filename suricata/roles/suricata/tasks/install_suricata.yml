@@ -14,11 +14,11 @@
     dest: "/etc/suricata/suricata.yaml"
     mode: 0644
     owner: root
-    group: root    
+    group: root
 
 - name: Create Suricata directories
   file:
-    path: "{{ suricata_data_dir }}/"
+    path: "/data/suricata"
     mode: 0755
     owner: "{{ suricata_user }}"
     group: "{{ suricata_group }}"
@@ -28,7 +28,7 @@
 # TODO: Make sure this is correct
 - name: Change permissions of Suricata log directory
   file:
-    path: "{{ suricata_log_location }}/"
+    path: "/var/log/suricata"
     mode: 0755
     owner: "{{ suricata_user }}"
     group: "{{ suricata_group }}"
