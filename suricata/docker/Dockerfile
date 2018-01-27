@@ -3,7 +3,7 @@
 FROM rocknsm/base:latest
 MAINTAINER Grant Curell <grant.curell@salientcrgt.com>
 
-LABEL io.rocknsm.zookeeper="0.0.5"
+LABEL io.rocknsm.suricata="0.0.1"
 
 COPY rocknsm-2.1.repo /etc/yum.repos.d/rocknsm-2.1.repo
 
