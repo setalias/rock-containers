@@ -1,0 +1,8 @@
+yum install epel-release
+yum update -y
+yum install -y python-pip
+pip install --upgrade pip
+pip install --upgrade setuptools
+pip install ansible-container[docker,k8s]
+
+See: https://github.com/ansible/ansible-container/issues/762

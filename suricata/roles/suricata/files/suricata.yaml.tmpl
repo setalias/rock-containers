@@ -12,7 +12,7 @@
 vars:
   # more specifc is better for alert accuracy and performance
   address-groups:
-    HOME_NET: {{ home_net }}
+    HOME_NET: {{ getv "_home_net" }}
 
     EXTERNAL_NET: "!$HOME_NET"
 
@@ -67,7 +67,7 @@ reference-config-file: /etc/suricata/reference.config
 # The default logging directory.  Any log or output file will be
 # placed here if its not specified with a full path name. This can be
 # overridden with the -l command line parameter.
-default-log-dir: {{ suricata_data_dir }}/
+default-log-dir: /data/suricata
 
 # global stats configuration
 stats:
@@ -434,7 +434,7 @@ logging:
   - file:
       enabled: no
       level: info
-      filename: {{ suricata_data_dir }}/suricata.log
+      filename: /data/suricata/suricata.log
       # type: json
   - syslog:
       enabled: no
@@ -453,11 +453,11 @@ logging:
 # Linux high speed capture support
 af-packet:
 {% for iface in rock_monifs %}
-  - interface: {{ iface }}
+  - interface: {{ getv "/iface" }}
     # Number of receive threads. "auto" uses the number of cores
     #threads: auto
     # Default clusterid. AF_PACKET will load balance packets based on flow.
-    cluster-id: {{ 99 - loop.index0 }}
+    cluster-id: {{ getv "/cluster/id" "99 - loop.index0" }}
     # Default AF_PACKET cluster type. AF_PACKET can load balance per flow or per hash.
     # This is only supported for Linux kernel > 3.1
     # possible value are:
