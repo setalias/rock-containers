@@ -1,0 +1,13 @@
+---
+
+version: '2'
+services:
+  suricata:
+    image: grantcurell/suricata:0.0.1
+    container_name: rock-suricata
+    environment:
+      SURICATA_HOME_NET: \"172.16.0.0/24\"
+      SURICATA_IFACE: ens224
+    network_mode: host
+
+...

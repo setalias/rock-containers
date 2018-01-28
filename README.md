@@ -3,13 +3,8 @@ Repo to store container sources
 
 ## Installing ansible-container
 
-Perform the following tasks:
-1. `yum install epel-release`
-2. `yum update -y`
-3. `yum install -y python-pip`
-4. `pip install --upgrade pip`
-5. `pip install --upgrade setuptools`
-6. `pip install ansible-container[docker,k8s]`
+Run:
+`yum install epel-release && yum update -y && yum install -y python-pip && pip install --upgrade pip && pip install --upgrade setuptools && pip install ansible-container[docker,k8s]`
 
 You will now need to update your engine.py file. See the bug here:
 
@@ -17,7 +12,7 @@ https://github.com/ansible/ansible-container/issues/762
 
 To update engine.py do the following:
 1. `vim /usr/lib/python2.7/site-packages/container/docker/engine.py`
-2. Go to line 210 and change the word "run" in os.path.join(os.sep, 'run', 'secrets') to docker
+2. Go to line 210 (or nearby) and change the word "run" in os.path.join(os.sep, 'run', 'secrets') to docker
 3. Save the file
 
 ## Structure

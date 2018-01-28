@@ -12,7 +12,7 @@
 vars:
   # more specifc is better for alert accuracy and performance
   address-groups:
-    HOME_NET: {{getv "/suricata/home/net"}}
+    HOME_NET: {{getv "/suricata/home/net" "\"[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]\""}}
 
     EXTERNAL_NET: "!$HOME_NET"
 
@@ -452,7 +452,7 @@ logging:
 
 # Linux high speed capture support
 af-packet:
-  - interface: {{getv "/suricata/iface"}}
+  - interface: {{getv "/suricata/iface" "eth1"}}
     # Number of receive threads. "auto" uses the number of cores
     #threads: auto
     # Default clusterid. AF_PACKET will load balance packets based on flow.
